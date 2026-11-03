@@ -26,16 +26,23 @@ site/                      公開するのはこのフォルダだけ
   THIRD-PARTY-LICENSES.md  第三者のライセンス表示（three.js、MIT）
   build-info.json          生成日時・本体のコミット・three.js の版など
 scripts/update-demo.mjs    site/ を本体の最新版で作り直すスクリプト
-.github/workflows/pages.yml  site/ を GitHub Pages に配信するワークフロー
 ```
 
 ## デプロイ
 
 ### GitHub Pages（このリポジトリで使っている方法）
 
-1. リポジトリの Settings → Pages → Build and deployment の Source を **GitHub Actions** にする（最初の 1 回だけ）。
-2. `main` に push すると、`.github/workflows/pages.yml` が `site/` の中身だけを Pages に配信する（`site/` が変わったときと、Actions 画面から手動で実行したときに動く）。
-3. 公開 URL は `https://yasabihhagure.github.io/worldcells_demo/`。
+`site/` の中身だけを `gh-pages` ブランチに置き、Pages はそのブランチから配信します。
+
+1. リポジトリの Settings → Pages → Build and deployment を「Deploy from a branch」、ブランチ `gh-pages`、フォルダ `/ (root)` にする（最初の 1 回だけ。設定済み）。
+2. `main` に `site/` をコミットしたあと、次で `site/` の中身を `gh-pages` に送る：
+
+   ```sh
+   git push origin main
+   git subtree push --prefix site origin gh-pages
+   ```
+
+3. 数分で `https://yasabihhagure.github.io/worldcells_demo/` に反映される。
 
 本体リポジトリ（private）とは連携しません。公開されるのは `site/` だけです。
 
@@ -68,7 +75,7 @@ WORLDCELLS_DIR=<本体リポジトリのフォルダ> node scripts/update-demo.m
 5. `site/` に TypeScript／C# のソース、`node_modules`、テスト、`testvectors.json`、ソースマップが入っていないことを確かめる
 6. 結果（ファイル数、合計サイズ）を表示する
 
-終わったら差分を確かめて、`site/` をコミットして push します。
+終わったら差分を確かめて、`site/` をコミットし、上の「GitHub Pages」の 2 の手順で push します。
 
 ## 注意
 
