@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/
+# 本体のソースやビルド途中のものを誤って入れないため
+*.ts
+*.cs
+*.map
+testvectors.json
