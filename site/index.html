@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MapGen デモ</title>
-  <script defer src="./assets/index-C7m8B3cP.js"></script>
+  <script defer src="./assets/index-3JOxR1kJ.js"></script>
 </head>
 <body>
   <aside id="panel">
@@ -30,7 +30,11 @@
       </div>
       <div class="row buttons">
         <button id="generate" type="button" class="primary">生成</button>
+      </div>
+      <div class="row buttons">
         <button id="export" type="button">JSON を書き出す</button>
+        <button id="import" type="button">JSON を読み込む</button>
+        <input id="importFile" type="file" accept=".json,application/json" hidden />
       </div>
       <p id="status" class="muted" aria-live="polite"></p>
     </section>
