@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MapGen デモ</title>
+  <script defer src="./assets/index-C7m8B3cP.js"></script>
+</head>
+<body>
+  <aside id="panel">
+    <h1>MapGen デモ</h1>
+
+    <section>
+      <h2>形</h2>
+      <div id="combos" class="combos" role="radiogroup" aria-label="形"></div>
+    </section>
+
+    <section>
+      <label class="row">シード
+        <input id="seed" type="number" min="0" max="4294967295" step="1" value="12345" />
+        <button id="random" type="button">ランダム</button>
+      </label>
+      <div id="sizePlane" class="row">
+        <label>幅 <input id="width" type="number" min="3" max="400" value="48" /></label>
+        <label>高さ <input id="height" type="number" min="3" max="300" value="32" /></label>
+      </div>
+      <div id="sizeSphere" class="row" hidden>
+        <label>分割数 <input id="divisions" type="number" min="2" max="100" value="18" /></label>
+        <span id="sphereCells" class="muted"></span>
+      </div>
+      <div class="row buttons">
+        <button id="generate" type="button" class="primary">生成</button>
+        <button id="export" type="button">JSON を書き出す</button>
+      </div>
+      <p id="status" class="muted" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>表示</h2>
+      <label class="row" id="wrapRow" hidden><input id="wrap" type="checkbox" /> 円筒を巻いて表示する</label>
+      <label class="row">標高の倍率 <output id="scaleOut">10.0</output></label>
+      <div class="row">
+        <input id="scale" type="range" min="0" max="30" step="0.5" value="10" />
+        <button type="button" data-scale="0">0</button>
+        <button type="button" data-scale="1">1</button>
+        <button type="button" data-scale="10">10</button>
+      </div>
+      <p class="muted small">1 が等倍（隣のセルまでの実際の距離と標高を同じ縮尺）、0 で平ら。</p>
+      <button id="resetView" type="button">カメラを戻す</button>
+    </section>
+
+    <section>
+      <h2>セル</h2>
+      <div id="cellInfo" class="cellInfo muted">クリックで選ぶ</div>
+    </section>
+
+    <section>
+      <h2>凡例</h2>
+      <ul id="legend" class="legend"></ul>
+    </section>
+
+    <p class="muted small">左ドラッグ：回す　右ドラッグ：動かす　ホイール：寄る　クリック：セルの情報</p>
+  </aside>
+  <main id="view" aria-label="地図"></main>
+</body>
+</html>
